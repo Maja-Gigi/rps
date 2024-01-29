@@ -121,9 +121,19 @@ function autoPlay() {
         intervalID = setInterval(function () {
             const playerMove = pickComputerMove();
             playGame(playerMove);
-    }, 1000)
+        }, 1000);
+        isAutoPlaying = true;
+
+        //When is autoPlaying the text in the button is 'Stop Playing'
+        document.querySelector('.js-auto-play-button')
+            .innerHTML = 'Stop Playing';
     } else {
         clearInterval(intervalID);
         isAutoPlaying = false;
+        
+        // When the game is not playing,
+        // change text back to 'Auto Play'
+        document.querySelector('.js-auto-play-button')
+            .innerHTML = 'Auto Play';
     }
 }
