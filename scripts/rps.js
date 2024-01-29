@@ -22,18 +22,23 @@ document.querySelector('.js-scissors-button')
         playGame('scissors');
     });
 
+
 document.querySelector('.js-reset-score-button')
     .addEventListener('click', () => {
-        score.wins = 0;
-        score.losses = 0;
-        score.ties = 0;
-        localStorage.removeItem('score');
-        updateScoreElement();
-    })
+        resetScore();
+    });
 
 document.querySelector('.js-auto-play-button')
     .addEventListener('click', () => {
         autoPlay();
+    });
+
+document.body.addEventListener('keydown', (event) => {
+        if (event.key === 'a') {
+            autoPlay();
+        } else if (event.key === 'Backspace') {
+            resetScore();
+        }
     });
 
 function playGame(playerMove) {
@@ -136,4 +141,12 @@ function autoPlay() {
         document.querySelector('.js-auto-play-button')
             .innerHTML = 'Auto Play';
     }
+}
+
+function resetScore() {
+    score.wins = 0;
+        score.losses = 0;
+        score.ties = 0;
+        localStorage.removeItem('score');
+        updateScoreElement();
 }
